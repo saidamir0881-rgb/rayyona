@@ -1,4 +1,4 @@
-﻿const dialog = document.querySelector('#dialog');
+const dialog = document.querySelector('#dialog');
 const game = document.querySelector('#game');
 let version = 0;
 document.querySelector('#close').onclick = () => dialog.close();
@@ -6,8 +6,8 @@ dialog.addEventListener('close', () => version++);
 document.querySelectorAll('[data-game]').forEach(button => button.onclick = () => {
   version++;
   const type = button.dataset.game;
-  document.querySelector('#modal-label').textContent = {math:'SONLAR SEHRGARI',memory:'JUFTINI TOP!',art:'KICHIK RASSOM'}[type];
-  ({math:mathGame,memory:memoryGame,art:drawGame})[type]();
+  document.querySelector('#modal-label').textContent = {math:'SONLAR SEHRGARI',memory:'JUFTINI TOP!',art:'KICHIK RASSOM',language:'ONA TILI',english:'ENGLISH TIME',stories:'ERTAK BURCHAGI'}[type];
+  ({math:learningMath,memory:memoryGame,art:drawGame,language:languageGame,english:englishGame,stories:storyGame})[type]();
   dialog.showModal();
 });
 function shuffle(values) {
@@ -51,7 +51,7 @@ function memoryGame() {
       if (!first) { first = tile; return; }
       const previous = first; first = null; moves++;
       if (previous.textContent === symbol) {
-        pairs++; [previous,tile].forEach(item => {item.disabled = true; item.classList.add('matched');});
+        pairs++; if (pairs === 6) reward('memory', 5); [previous,tile].forEach(item => {item.disabled = true; item.classList.add('matched');});
       } else {
         locked = true;
         setTimeout(() => {
@@ -80,7 +80,7 @@ function drawGame() {
   canvas.onpointermove = event => {if (!drawing) return; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = color; ctx.lineTo(...point(event)); ctx.stroke();};
   ['pointerup','pointercancel','lostpointercapture'].forEach(type => canvas.addEventListener(type,() => drawing = false));
   game.querySelector('#clear').onclick = clear;
-  game.querySelector('#save').onclick = () => {const link = document.createElement('a'); link.download = 'Rayyonaning-rasmi.png'; link.href = canvas.toDataURL('image/png'); link.click();};
+  game.querySelector('#save').onclick = () => {const link = document.createElement('a'); link.download = 'Rayyonaning-rasmi.png'; link.href = canvas.toDataURL('image/png'); link.click(); if (!canvas.dataset.rewarded) { reward('art', 3); canvas.dataset.rewarded = 'true'; }};
   clear();
 }
 const dreamInput = document.querySelector('#dream-input'), status = document.querySelector('#dream-status');

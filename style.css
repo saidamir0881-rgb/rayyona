@@ -41,3 +41,39 @@ canvas { height: auto; aspect-ratio: 5 / 3; }
   footer { flex-wrap: wrap; gap: 6px; }
 }
 @media (hover: none) { .card:hover, .primary:hover { transform: none; } }
+
+.dashboard { padding-bottom: 52px; }
+.star-total { padding: 12px 20px; border-radius: 24px; background: #f3e9ca; font-weight: 900; font-size: 22px; white-space: nowrap; }
+.storage-note { color: var(--muted); font-size: 12px; }
+.medals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0 32px; }
+.medal { border: 1px dashed #d9d9cb; background: #f0eee6; border-radius: 15px; padding: 20px 12px; text-align: center; }
+.medal > span { display: block; font-size: 32px; filter: grayscale(1); opacity: .5; }
+.medal b { display: block; margin: 8px 0 3px; font-size: 13px; }
+.medal small { font-size: 10px; color: #777f6a; }
+.medal.earned { background: #edf0df; border: 1px solid #cbd6b7; }
+.medal.earned > span { filter: none; opacity: 1; }
+.daily-tasks { padding: 26px; background: #f5eee7; border-radius: 18px; }
+.daily-tasks > p { font-size: 12px; color: #787d70; }
+.task-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+.task { display: flex; align-items: center; gap: 12px; padding: 14px; background: #fffaf3; border-radius: 10px; font-size: 13px; cursor: pointer; }
+.task input { width: 22px; height: 22px; flex-shrink: 0; accent-color: #637d53; }
+.task:has(input:checked) { background: #e6ecd9; }
+.task:has(input:checked) span { text-decoration: line-through; }
+.lesson-menu { display: grid; gap: 12px; margin: 24px 0 10px; }
+.lesson-menu button { min-height: 55px; padding: 16px; background: #eaf0de; border: 1px solid #d7dec9; border-radius: 12px; color: var(--green); font-weight: 800; }
+.quiz-prompt { font-size: clamp(22px, 5vw, 32px); font-weight: 900; line-height: 1.6; margin: 24px 0; overflow-wrap: anywhere; }
+.story-text { text-align: left; padding: 10px 5px; }
+#game .story-text p { font-size: 17px; line-height: 1.9; color: var(--ink); }
+.answers button { overflow-wrap: anywhere; min-width: 0; font-size: 16px; }
+button:disabled { cursor: default; }
+.answers button:disabled { opacity: .6; }
+.card-top i { font-size: 25px; }
+@media(max-width:650px) {
+  .dashboard .section-title { text-align: left; }
+  .star-total { display: inline-block; margin-top: 15px; }
+  .medals { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .task-list { grid-template-columns: 1fr; }
+  .daily-tasks { padding: 20px 16px; }
+  .dashboard { padding-bottom: 35px; }
+  #game .story-text p { font-size: 16px; }
+}
